@@ -1,4 +1,4 @@
-import ReadingTimer from '../ReadPerMinute'
+import ReadPerMinute from '../ReadPerMinute'
 
 const WORDS = [
 	'year',
@@ -74,13 +74,13 @@ const generateTokenizedText = (separator = '%', maxWordCount = 50, minWordCount 
 describe('ReadPerMinute', () => {
 	describe('constructor', () => {
 		it('Instantiates class with no error', () => {
-			expect(() => new ReadingTimer()).not.toThrow()
+			expect(() => new ReadPerMinute()).not.toThrow()
 		})
 	})
 
 	describe('isLangExist', () => {
 		it('Returns false as lang is not specified', () => {
-			expect(ReadingTimer.isLangExist()).toBeFalsy()
+			expect(ReadPerMinute.isLangExist()).toBeFalsy()
 		})
 
 		it.each([
@@ -90,58 +90,58 @@ describe('ReadPerMinute', () => {
 			[() => null, false],
 			[[], false],
 			[{}, false],
-			[Object.keys(ReadingTimer.rates)[1], true],
+			[Object.keys(ReadPerMinute.rates)[1], true],
 			['de', true],
 		])('Returns lang existence', (value, expected) => {
-			expect(ReadingTimer.isLangExist(value)).toBe(expected)
+			expect(ReadPerMinute.isLangExist(value)).toBe(expected)
 		})
 	})
 
 	describe('parse', () => {
 		it('Parses text using default values', () => {
-			const instance = new ReadingTimer()
-			expect(instance.parse()).toEqual({ time: 1, words: 1, rate: ReadingTimer.rates.en })
+			const instance = new ReadPerMinute()
+			expect(instance.parse()).toEqual({ time: 1, words: 1, rate: ReadPerMinute.rates.en })
 			expect(
-				instance.parse(generateTokenizedText(null, ReadingTimer.rates.en, ReadingTimer.rates.en).str),
-			).toEqual({ time: 1, words: ReadingTimer.rates.en, rate: ReadingTimer.rates.en })
+				instance.parse(generateTokenizedText(null, ReadPerMinute.rates.en, ReadPerMinute.rates.en).str)
+			).toEqual({ time: 1, words: ReadPerMinute.rates.en, rate: ReadPerMinute.rates.en })
 		})
 
 		it.each([
 			[
 				generateTokenizedText(null, 255, 255).str,
 				'en',
-				{ time: Math.ceil(255 / ReadingTimer.rates.en), words: 255, rate: ReadingTimer.rates.en },
+				{ time: Math.ceil(255 / ReadPerMinute.rates.en), words: 255, rate: ReadPerMinute.rates.en },
 			],
 			[
-				generateTokenizedText(null, ReadingTimer.rates.en, ReadingTimer.rates.en).str,
+				generateTokenizedText(null, ReadPerMinute.rates.en, ReadPerMinute.rates.en).str,
 				'en',
-				{ time: 1, words: ReadingTimer.rates.en, rate: ReadingTimer.rates.en },
+				{ time: 1, words: ReadPerMinute.rates.en, rate: ReadPerMinute.rates.en },
 			],
-			[null, 'en', { time: 1, words: 1, rate: ReadingTimer.rates.en }],
+			[null, 'en', { time: 1, words: 1, rate: ReadPerMinute.rates.en }],
 			[
-				generateTokenizedText(null, ReadingTimer.rates.default, ReadingTimer.rates.default).str,
+				generateTokenizedText(null, ReadPerMinute.rates.default, ReadPerMinute.rates.default).str,
 				null,
-				{ time: 1, words: ReadingTimer.rates.default, rate: ReadingTimer.rates.default },
+				{ time: 1, words: ReadPerMinute.rates.default, rate: ReadPerMinute.rates.default },
 			],
 			[
-				generateTokenizedText(null, ReadingTimer.rates.default, ReadingTimer.rates.default).str,
+				generateTokenizedText(null, ReadPerMinute.rates.default, ReadPerMinute.rates.default).str,
 				'foo',
-				{ time: 1, words: ReadingTimer.rates.default, rate: ReadingTimer.rates.default },
+				{ time: 1, words: ReadPerMinute.rates.default, rate: ReadPerMinute.rates.default },
 			],
-			[null, null, { time: 1, words: 1, rate: ReadingTimer.rates.default }],
+			[null, null, { time: 1, words: 1, rate: ReadPerMinute.rates.default }],
 		])('Parses text using specified values', (text, lang, expected) => {
-			const instance = new ReadingTimer()
+			const instance = new ReadPerMinute()
 			expect(instance.parse(text, lang)).toEqual(expected)
 		})
 
 		it.each([
 			[
-				generateTokenizedText(null, ReadingTimer.rates.en, ReadingTimer.rates.en).str,
+				generateTokenizedText(null, ReadPerMinute.rates.en, ReadPerMinute.rates.en).str,
 				'fr',
-				{ time: 1, words: ReadingTimer.rates.en, rate: ReadingTimer.rates.en },
+				{ time: 1, words: ReadPerMinute.rates.en, rate: ReadPerMinute.rates.en },
 			],
 		])('Parses text regarding lang rate', (text, lang, expected) => {
-			const instance = new ReadingTimer()
+			const instance = new ReadPerMinute()
 			expect(instance.parse(text, lang)).not.toEqual(expected)
 		})
 	})
