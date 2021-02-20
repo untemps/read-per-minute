@@ -20,7 +20,6 @@ export default {
 		format: target,
 		sourcemap: 'inline'
 	},
-	external: ['@babel/plugin-transform-runtime'],
 	plugins: [
 		babel({
 			exclude: 'node_modules/**',
