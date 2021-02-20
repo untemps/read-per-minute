@@ -1,6 +1,6 @@
 {
 	"name": "@untemps/read-per-minute",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Class to parse a string and return an estimated reading time based on a lang rate",
 	"repository": "git@github.com:untemps/read-per-minute.git",
 	"keywords": [
