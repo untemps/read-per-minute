@@ -100,7 +100,7 @@ describe('ReadPerMinute', () => {
 	describe('parse', () => {
 		it('Parses text using default values', () => {
 			const instance = new ReadPerMinute()
-			expect(instance.parse()).toEqual({ time: 1, words: 1, rate: ReadPerMinute.rates.en })
+			expect(instance.parse()).toEqual({ time: 0, words: 0, rate: ReadPerMinute.rates.en })
 			expect(
 				instance.parse(generateTokenizedText(null, ReadPerMinute.rates.en, ReadPerMinute.rates.en).str)
 			).toEqual({ time: 1, words: ReadPerMinute.rates.en, rate: ReadPerMinute.rates.en })
@@ -117,7 +117,7 @@ describe('ReadPerMinute', () => {
 				'en',
 				{ time: 1, words: ReadPerMinute.rates.en, rate: ReadPerMinute.rates.en },
 			],
-			[null, 'en', { time: 1, words: 1, rate: ReadPerMinute.rates.en }],
+			[null, 'en', { time: 0, words: 0, rate: ReadPerMinute.rates.en }],
 			[
 				generateTokenizedText(null, ReadPerMinute.rates.default, ReadPerMinute.rates.default).str,
 				null,
@@ -128,7 +128,7 @@ describe('ReadPerMinute', () => {
 				'foo',
 				{ time: 1, words: ReadPerMinute.rates.default, rate: ReadPerMinute.rates.default },
 			],
-			[null, null, { time: 1, words: 1, rate: ReadPerMinute.rates.default }],
+			[null, null, { time: 0, words: 0, rate: ReadPerMinute.rates.default }],
 		])('Parses text using specified values', (text, lang, expected) => {
 			const instance = new ReadPerMinute()
 			expect(instance.parse(text, lang)).toEqual(expected)

@@ -36,13 +36,19 @@ class ReadPerMinute {
 	 * @returns {{rate: number, words: number, time: number}}   Object containing the estimated time, the number of words and the rate used in the calculation.
 	 */
 	parse(text = '', lang = 'en') {
-		if (!text) {
-			text = ''
-		}
 		if (!ReadPerMinute.isLangExist(lang)) {
 			lang = 'default'
 		}
 		const rate = ReadPerMinute.rates[lang]
+		
+		if (!text || !text.length) {
+			return {
+				time: 0,
+				words: 0,
+				rate,
+			}
+		}
+		
 		const words = text.trim().split(/\s+/).length
 		return {
 			time: Math.ceil(words / rate),
