@@ -3,12 +3,7 @@
 	"version": "1.0.2",
 	"description": "Class to parse a string and return an estimated reading time based on a lang rate",
 	"repository": "git@github.com:untemps/read-per-minute.git",
-	"keywords": [
-		"estimated reading time",
-		"reading time",
-		"class",
-		"javascript"
-	],
+	"keywords": ["estimated reading time", "reading time", "class", "javascript"],
 	"author": "Vincent Le Badezet <v.lebadezet@untemps.net>",
 	"license": "MIT",
 	"private": false,
@@ -17,6 +12,13 @@
 	},
 	"main": "dist/index.js",
 	"module": "dist/index.es.js",
+	"files": ["dist"],
+	"exports": {
+		".": {
+			"import": "./dist/index.es.js",
+			"require": "./dist/index.js"
+		}
+	},
 	"devDependencies": {
 		"@babel/cli": "^7.10.1",
 		"@babel/core": "^7.10.2",
@@ -51,9 +53,7 @@
 		"collectCoverage": true
 	},
 	"release": {
-		"branches": [
-			"main"
-		],
+		"branches": ["main"],
 		"plugins": [
 			[
 				"@semantic-release/commit-analyzer",
