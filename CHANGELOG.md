@@ -1,3 +1,5 @@
+## [1.0.3](https://github.com/untemps/read-per-minute/compare/v1.0.2...v1.0.3) (2022-02-16)
+
 ## [1.0.2](https://github.com/untemps/read-per-minute/compare/v1.0.1...v1.0.2) (2022-02-16)
 
 
