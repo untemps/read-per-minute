@@ -61,7 +61,7 @@
 					"releaseRules": [
 						{
 							"type": "chore",
-							"scope": "bundle",
+							"scope": "force",
 							"release": "patch"
 						}
 					]
@@ -81,6 +81,6 @@
 		"build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs rollup -c",
 		"build:es": "cross-env NODE_ENV=production BABEL_ENV=es rollup -c",
 		"build:umd": "cross-env NODE_ENV=production BABEL_ENV=umd rollup -c",
-		"prettier": "prettier \"*/**/*.js\" --ignore-path ./.prettierignore --write"
+		"prettier": "prettier \"*/**/*.js\" --ignore-path ./.prettierignore --write && git add . && git status"
 	}
 }

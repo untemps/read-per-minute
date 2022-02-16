@@ -40,7 +40,7 @@ class ReadPerMinute {
 			lang = 'default'
 		}
 		const rate = ReadPerMinute.rates[lang]
-		
+
 		if (!text || !text.length) {
 			return {
 				time: 0,
@@ -48,7 +48,7 @@ class ReadPerMinute {
 				rate,
 			}
 		}
-		
+
 		const words = text.trim().split(/\s+/).length
 		return {
 			time: Math.ceil(words / rate),
