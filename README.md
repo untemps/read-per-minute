@@ -3,7 +3,7 @@
 Class to parse a string and return an estimated reading time based on a lang rate.
 
 ![npm](https://img.shields.io/npm/v/@untemps/read-per-minute?style=for-the-badge)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/untemps/read-per-minute/deploy?style=for-the-badge)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/untemps/read-per-minute/index.yml?style=for-the-badge)](https://github.com/untemps/read-per-minute/actions)
 ![Codecov](https://img.shields.io/codecov/c/github/untemps/read-per-minute?style=for-the-badge)
 
 ## Installation
