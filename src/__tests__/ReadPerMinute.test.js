@@ -1,3 +1,5 @@
+import {describe, expect, test} from 'vitest'
+
 import ReadPerMinute from '../ReadPerMinute'
 
 const WORDS = [
@@ -73,17 +75,17 @@ const generateTokenizedText = (separator = '%', maxWordCount = 50, minWordCount 
 
 describe('ReadPerMinute', () => {
 	describe('constructor', () => {
-		it('Instantiates class with no error', () => {
+		test('Instantiates class with no error', () => {
 			expect(() => new ReadPerMinute()).not.toThrow()
 		})
 	})
 
 	describe('isLangExist', () => {
-		it('Returns false as lang is not specified', () => {
+		test('Returns false as lang is not specified', () => {
 			expect(ReadPerMinute.isLangExist()).toBeFalsy()
 		})
-
-		it.each([
+		
+		test.each([
 			[null, false],
 			['Foo', false],
 			[42, false],
@@ -98,15 +100,15 @@ describe('ReadPerMinute', () => {
 	})
 
 	describe('parse', () => {
-		it('Parses text using default values', () => {
+		test('Parses text using default values', () => {
 			const instance = new ReadPerMinute()
 			expect(instance.parse()).toEqual({ time: 0, words: 0, rate: ReadPerMinute.rates.en })
 			expect(
 				instance.parse(generateTokenizedText(null, ReadPerMinute.rates.en, ReadPerMinute.rates.en).str)
 			).toEqual({ time: 1, words: ReadPerMinute.rates.en, rate: ReadPerMinute.rates.en })
 		})
-
-		it.each([
+		
+		test.each([
 			[
 				generateTokenizedText(null, 255, 255).str,
 				'en',
@@ -133,8 +135,8 @@ describe('ReadPerMinute', () => {
 			const instance = new ReadPerMinute()
 			expect(instance.parse(text, lang)).toEqual(expected)
 		})
-
-		it.each([
+		
+		test.each([
 			[
 				generateTokenizedText(null, ReadPerMinute.rates.en, ReadPerMinute.rates.en).str,
 				'fr',
