@@ -5,6 +5,7 @@ export default defineConfig({
 		lib: {
 			name: '@untemps/read-per-minute',
 			entry: './src/index.js',
+			fileName: 'index'
 		},
 	},
 })
