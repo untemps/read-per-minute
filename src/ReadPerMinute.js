@@ -1,7 +1,6 @@
 /**
  * Rates from "How many words do we read per minute? A review and meta-analysis of reading rate" by Marc Brysbaert - Department of Experimental Psychology Ghent University
  */
-
 class ReadPerMinute {
 	static rates = Object.freeze({
 		default: 200,

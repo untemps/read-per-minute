@@ -1,67 +1,57 @@
 {
 	"name": "@untemps/read-per-minute",
 	"version": "1.0.3",
-	"description": "Class to parse a string and return an estimated reading time based on a lang rate",
+	"author": "Vincent Le Badezet <v.lebadezet@untemps.net>",
+	"license": "MIT",
+	"homepage": "https://github.com/untemps/read-per-minute",
 	"repository": "git@github.com:untemps/read-per-minute.git",
+	"bugs": "https://github.com/untemps/read-per-minute/issues",
+	"description": "Class to parse a string and return an estimated reading time based on a lang rate",
 	"keywords": [
 		"estimated reading time",
 		"reading time",
 		"class",
 		"javascript"
 	],
-	"author": "Vincent Le Badezet <v.lebadezet@untemps.net>",
-	"license": "MIT",
 	"private": false,
 	"publishConfig": {
 		"access": "public"
 	},
-	"main": "dist/index.js",
-	"module": "dist/index.es.js",
+	"svelte": "./dist/index.js",
+	"type": "module",
 	"files": [
-		"dist"
+		"dist",
+		"!dist/**/*.test.*"
 	],
 	"exports": {
 		".": {
-			"import": "./dist/index.es.js",
-			"require": "./dist/index.js"
+			"svelte": "./dist/index.js"
 		}
+	},
+	"engines": {
+		"node": ">=18"
 	},
 	"devDependencies": {
-		"@babel/cli": "^7.10.1",
-		"@babel/core": "^7.10.2",
-		"@babel/plugin-proposal-class-properties": "^7.8.3",
-		"@babel/plugin-transform-runtime": "^7.10.1",
-		"@babel/preset-env": "^7.9.6",
-		"@rollup/plugin-babel": "^5.0.2",
-		"@rollup/plugin-commonjs": "^12.0.0",
-		"@rollup/plugin-node-resolve": "^8.0.0",
-		"@semantic-release/changelog": "^5.0.1",
-		"@semantic-release/git": "^9.0.0",
-		"@semantic-release/github": "^7.0.7",
-		"babel-jest": "^26.0.1",
-		"cross-env": "^7.0.2",
-		"husky": "^4.2.5",
-		"jest": "^26.0.1",
-		"prettier": "^2.0.5",
-		"rimraf": "^3.0.2",
-		"rollup": "^2.12.0",
-		"rollup-plugin-filesize": "^9.0.0",
-		"rollup-plugin-terser": "^6.1.0",
-		"rollup-plugin-visualizer": "^4.0.4",
-		"semantic-release": "^17.0.7"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "yarn test:ci && yarn prettier"
-		}
-	},
-	"jest": {
-		"coverageDirectory": "./coverage/",
-		"collectCoverage": true
+		"@commitlint/cli": "^17.7.2",
+		"@commitlint/config-conventional": "^17.7.0",
+		"@semantic-release/changelog": "^6.0.3",
+		"@semantic-release/git": "^10.0.1",
+		"@semantic-release/github": "^9.2.1",
+		"@vitest/coverage-v8": "^0.34.6",
+		"cross-env": "^7.0.3",
+		"husky": "^8.0.3",
+		"prettier": "^3.0.3",
+		"semantic-release": "^22.0.5",
+		"vite": "^4.4.2",
+		"vitest": "^0.34.0"
 	},
 	"release": {
 		"branches": [
-			"main"
+			"main",
+			{
+				"name": "beta",
+				"prerelease": true
+			}
 		],
 		"plugins": [
 			[
@@ -69,7 +59,6 @@
 				{
 					"releaseRules": [
 						{
-							"type": "chore",
 							"scope": "force",
 							"release": "patch"
 						}
@@ -80,16 +69,24 @@
 			"@semantic-release/changelog",
 			"@semantic-release/npm",
 			"@semantic-release/git",
-			"@semantic-release/github"
+			[
+				"@semantic-release/github",
+				{
+					"assets": [
+						{
+							"path": "dist/index.js"
+						}
+					]
+				}
+			]
 		]
 	},
 	"scripts": {
-		"test": "jest -u --watch",
-		"test:ci": "jest -u -b --ci --coverage",
-		"build": "rimraf dist && yarn build:cjs && yarn build:es && yarn build:umd",
-		"build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs rollup -c",
-		"build:es": "cross-env NODE_ENV=production BABEL_ENV=es rollup -c",
-		"build:umd": "cross-env NODE_ENV=production BABEL_ENV=umd rollup -c",
-		"prettier": "prettier \"*/**/*.js\" --ignore-path ./.prettierignore --write && git add . && git status"
+		"build": "vite build",
+		"test": "vitest watch --coverage",
+		"test:ci": "vitest run --coverage",
+		"lint": "prettier --check .",
+		"format": "prettier --write .",
+		"prepare": "husky install"
 	}
 }
