@@ -1,6 +1,6 @@
 # @untemps/read-per-minute
 
-Class to parse a string and return an estimated reading time based on a lang rate.
+Class to parse a long text and return an estimated reading time based on a lang rate.
 
 ![npm](https://img.shields.io/npm/v/@untemps/read-per-minute?style=for-the-badge)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/untemps/read-per-minute/index.yml?style=for-the-badge)](https://github.com/untemps/read-per-minute/actions)
