@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/untemps/read-per-minute/compare/v1.0.3...v2.0.0) (2023-10-01)
+
+
+### Documentation
+
+* Update description ([#8](https://github.com/untemps/read-per-minute/issues/8)) ([208a8b1](https://github.com/untemps/read-per-minute/commit/208a8b1d0517e333d73140cfed99b21c3869fb8d))
+
+
+### BREAKING CHANGES
+
+* Force major release after 3428f19
+
 ## [1.0.3](https://github.com/untemps/read-per-minute/compare/v1.0.2...v1.0.3) (2022-02-16)
 
 ## [1.0.2](https://github.com/untemps/read-per-minute/compare/v1.0.1...v1.0.2) (2022-02-16)
