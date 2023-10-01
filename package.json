@@ -18,7 +18,6 @@
 		"access": "public"
 	},
 	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts",
 	"type": "module",
 	"files": [
 		"dist",
@@ -26,7 +25,6 @@
 	],
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
 		}
 	},

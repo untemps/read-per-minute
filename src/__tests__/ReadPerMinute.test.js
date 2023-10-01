@@ -1,4 +1,4 @@
-import {describe, expect, test} from 'vitest'
+import { describe, expect, test } from 'vitest'
 
 import ReadPerMinute from '../ReadPerMinute'
 
@@ -84,7 +84,7 @@ describe('ReadPerMinute', () => {
 		test('Returns false as lang is not specified', () => {
 			expect(ReadPerMinute.isLangExist()).toBeFalsy()
 		})
-		
+
 		test.each([
 			[null, false],
 			['Foo', false],
@@ -107,7 +107,7 @@ describe('ReadPerMinute', () => {
 				instance.parse(generateTokenizedText(null, ReadPerMinute.rates.en, ReadPerMinute.rates.en).str)
 			).toEqual({ time: 1, words: ReadPerMinute.rates.en, rate: ReadPerMinute.rates.en })
 		})
-		
+
 		test.each([
 			[
 				generateTokenizedText(null, 255, 255).str,
@@ -135,7 +135,7 @@ describe('ReadPerMinute', () => {
 			const instance = new ReadPerMinute()
 			expect(instance.parse(text, lang)).toEqual(expected)
 		})
-		
+
 		test.each([
 			[
 				generateTokenizedText(null, ReadPerMinute.rates.en, ReadPerMinute.rates.en).str,
