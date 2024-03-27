@@ -146,5 +146,29 @@ describe('ReadPerMinute', () => {
 			const instance = new ReadPerMinute()
 			expect(instance.parse(text, lang)).not.toEqual(expected)
 		})
+
+		test.each([
+			[
+				generateTokenizedText(null, 425, 425).str,
+				425,
+				{ time: 1, words: 425, rate: 425 },
+			]
+		])('Parses text and uses the custom rate for calculations', (text, langOrRate, expected) => {
+			const instance = new ReadPerMinute()
+			expect(instance.parse(text, langOrRate)).toEqual(expected)
+		})
+		test.each([
+			[
+				generateTokenizedText(null, 1, 1).str,
+				0
+			],
+			[
+				generateTokenizedText(null, 1, 1).str,
+				-1
+			],
+		])('Throws an error if the custom rate is invalid', (text, customRate) => {
+			const instance = new ReadPerMinute()
+			expect(() => instance.parse(text, customRate)).toThrowError()
+		})
 	})
 })
