@@ -155,7 +155,7 @@ describe('ReadPerMinute', () => {
 			]
 		])('Parses text and uses a custom rate', (text, rate, expected) => {
 			const instance = new ReadPerMinute()
-			expect(instance.parse(text, langOrRate)).toEqual(expected)
+			expect(instance.parse(text, rate)).toEqual(expected)
 		})
 		test.each([
 			[
