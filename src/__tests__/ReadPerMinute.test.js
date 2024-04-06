@@ -153,7 +153,7 @@ describe('ReadPerMinute', () => {
 				425,
 				{ time: 1, words: 425, rate: 425 },
 			]
-		])('Parses text and uses the custom rate for calculations', (text, langOrRate, expected) => {
+		])('Parses text and uses a custom rate', (text, rate, expected) => {
 			const instance = new ReadPerMinute()
 			expect(instance.parse(text, langOrRate)).toEqual(expected)
 		})
