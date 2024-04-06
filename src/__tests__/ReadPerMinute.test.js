@@ -166,9 +166,10 @@ describe('ReadPerMinute', () => {
 				generateTokenizedText(null, 1, 1).str,
 				-1
 			],
-		])('Throws an error if the custom rate is invalid', (text, customRate) => {
+		])('Exchanges invalid numeric values with the default rate', (text, customRate) => {
 			const instance = new ReadPerMinute()
-			expect(() => instance.parse(text, customRate)).toThrowError()
+			const result = instance.parse(text, customRate)
+			expect(result.rate).to.equal(200);
 		})
 	})
 })

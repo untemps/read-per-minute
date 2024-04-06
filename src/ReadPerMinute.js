@@ -36,11 +36,7 @@ class ReadPerMinute {
 	 */
 	parse(text = '', langOrRate = 'en') {
 		let rate = 0;
-		if (typeof langOrRate === 'number') {
-			// Must be greater than zero.
-			if (langOrRate <= 0) {
-				throw new Error('The specified rate must be greater than zero.')
-			}
+		if (typeof langOrRate === 'number' && langOrRate > 0) {
 			rate = langOrRate
 		}
 		else {

@@ -49,7 +49,7 @@ Simply pass the desired custom reading rate in words per minute instead of a lan
 rpm.parse('Long text', 425)
 ```
 
-**NOTE**:  The custom reading rate must be greater than zero or an error will be thrown.
+**NOTE**:  The custom reading rate must be greater than zero or the default value will be used.
 
 ## Rates
 
