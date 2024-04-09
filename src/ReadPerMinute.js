@@ -31,14 +31,16 @@ class ReadPerMinute {
 	 * Parses a string, counts the number the words and divides it by the lang rate to get an estimated reading time.
 	 * The function returns an object containing the estimated time, the number of words and the rate used in the calculation.
 	 * @param text  {string}                                    String to parse.
-	 * @param lang  {string}                                    Lang used to retrieve the reading rate.
+	 * @param langOrRate  {string | number}                     Lang used to retrieve the reading rate, or a custom rate value.
 	 * @returns {{rate: number, words: number, time: number}}   Object containing the estimated time, the number of words and the rate used in the calculation.
 	 */
-	parse(text = '', lang = 'en') {
-		if (!ReadPerMinute.isLangExist(lang)) {
-			lang = 'default'
+	parse(text = '', langOrRate = 'en') {
+		let rate = ReadPerMinute.rates['default'];
+		if (+langOrRate > 0) {
+			rate = langOrRate
+		} else if (ReadPerMinute.isLangExist(langOrRate)) {
+			rate = ReadPerMinute.rates[langOrRate]
 		}
-		const rate = ReadPerMinute.rates[lang]
 
 		if (!text || !text.length) {
 			return {

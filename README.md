@@ -40,6 +40,17 @@ const numberOfWords = rpm.words
 const langRate = rpm.rate
 ```
 
+### Alternative Use with a Custom Rate
+
+Simply pass the desired custom reading rate in words per minute instead of a language code:
+
+```javascript
+// For very fast readers: 425 words per minute.
+rpm.parse('Long text', 425)
+```
+
+**NOTE**:  The custom reading rate must be greater than zero or the default value will be used.
+
 ## Rates
 
 Reading rates by lang come from ["How many words do we read per minute? A review and meta-analysis of reading rate"](https://osf.io/4nv9f/) by Marc Brysbaert - Department of Experimental Psychology Ghent University
