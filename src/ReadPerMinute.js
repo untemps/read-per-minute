@@ -18,13 +18,19 @@ class ReadPerMinute {
 		sv: 218,
 	})
 
+	_rates = null
+
+	constructor(rates = null) {
+		this._rates = rates ?? ReadPerMinute.rates
+	}
+
 	/**
 	 * Returns whether the specified lang is indexed in the rate list.
 	 * @param lang  {string}    Lang to test
 	 * @returns {boolean}       True if the lang is indexed, false if not
 	 */
-	static isLangExist(lang) {
-		return !!lang && !!ReadPerMinute.rates[lang]
+	isLangExist(lang) {
+		return !!lang && !!this._rates[lang]
 	}
 
 	/**
@@ -34,15 +40,15 @@ class ReadPerMinute {
 	 * @param langOrRate  {string | number}                     Lang used to retrieve the reading rate, or a custom rate value.
 	 * @returns {{rate: number, words: number, time: number}}   Object containing the estimated time, the number of words and the rate used in the calculation.
 	 */
-	parse(text = '', langOrRate = 'en') {
-		let rate = ReadPerMinute.rates['default'];
+	parse(text = '', langOrRate = 'default') {
+		let rate = this._rates['default'] ?? ReadPerMinute.rates['default'];
 		if (+langOrRate > 0) {
 			rate = langOrRate
-		} else if (ReadPerMinute.isLangExist(langOrRate)) {
-			rate = ReadPerMinute.rates[langOrRate]
+		} else if (this.isLangExist(langOrRate)) {
+			rate = this._rates[langOrRate]
 		}
 
-		if (!text || !text.length) {
+		if (!text?.length) {
 			return {
 				time: 0,
 				words: 0,
