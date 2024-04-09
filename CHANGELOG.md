@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/untemps/read-per-minute/compare/v2.0.1...v2.1.0) (2024-04-09)
+
+
+### Features
+
+* Allow custom rate in parse function ([#10](https://github.com/untemps/read-per-minute/issues/10)) ([eb12080](https://github.com/untemps/read-per-minute/commit/eb12080eed16eb1a8f6a2385d76b982e39cebb92))
+
 ## [2.0.1](https://github.com/untemps/read-per-minute/compare/v2.0.0...v2.0.1) (2023-10-01)
 
 # [2.0.0](https://github.com/untemps/read-per-minute/compare/v1.0.3...v2.0.0) (2023-10-01)
