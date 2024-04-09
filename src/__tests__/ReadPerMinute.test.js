@@ -169,7 +169,7 @@ describe('ReadPerMinute', () => {
 		])('Exchanges invalid numeric values with the default rate', (text, customRate) => {
 			const instance = new ReadPerMinute()
 			const result = instance.parse(text, customRate)
-			expect(result.rate).to.equal(200);
+			expect(result.rate).to.equal(ReadPerMinute.rates.default);
 		})
 	})
 })

@@ -35,14 +35,10 @@ class ReadPerMinute {
 	 * @returns {{rate: number, words: number, time: number}}   Object containing the estimated time, the number of words and the rate used in the calculation.
 	 */
 	parse(text = '', langOrRate = 'en') {
-		let rate = 0;
-		if (typeof langOrRate === 'number' && langOrRate > 0) {
+		let rate = ReadPerMinute.rates['default'];
+		if (+langOrRate > 0) {
 			rate = langOrRate
-		}
-		else {
-			if (!ReadPerMinute.isLangExist(langOrRate)) {
-				langOrRate = 'default'
-			}
+		} else if (ReadPerMinute.isLangExist(langOrRate)) {
 			rate = ReadPerMinute.rates[langOrRate]
 		}
 
