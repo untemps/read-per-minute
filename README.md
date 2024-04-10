@@ -40,7 +40,27 @@ const numberOfWords = rpm.words
 const langRate = rpm.rate
 ```
 
-### Alternative Use with a Custom Rate
+### Alternative Use with Custom Rates
+
+#### Override all the values
+
+You can specify an entire custom rates object in the constructor of an instance:
+
+```javascript
+const customRates = {
+	default: 220,
+	ar: 191,
+	zh: 255,
+	nl: 234,
+	en: 244,
+}
+const rpm = new ReadPerMinute(customRates)
+```
+
+**NOTE**: Set a `default` property in the object if you want the parsing to fallback to a specific value.  
+Otherwise, the static value will be used (`ReadPerMinute.rates.default`).
+
+#### Override the value for a one-time parsing
 
 Simply pass the desired custom reading rate in words per minute instead of a language code:
 
@@ -49,7 +69,7 @@ Simply pass the desired custom reading rate in words per minute instead of a lan
 rpm.parse('Long text', 425)
 ```
 
-**NOTE**:  The custom reading rate must be greater than zero or the default value will be used.
+**NOTE**: The custom reading rate must be greater than zero or the default value will be used.
 
 ## Rates
 
