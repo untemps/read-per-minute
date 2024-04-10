@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/untemps/read-per-minute/compare/v2.1.0...v3.0.0) (2024-04-10)
+
+
+### Features
+
+* Allow to pass custom rates at instance level ([#14](https://github.com/untemps/read-per-minute/issues/14)) ([6b540d3](https://github.com/untemps/read-per-minute/commit/6b540d3594aa9aba332c297a641a3e5788581657))
+
+
+### BREAKING CHANGES
+
+* The isLangExist method is not static anymore
+
 # [2.1.0](https://github.com/untemps/read-per-minute/compare/v2.0.1...v2.1.0) (2024-04-09)
 
 
