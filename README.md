@@ -40,7 +40,7 @@ const numberOfWords = rpm.words
 const langRate = rpm.rate
 ```
 
-### Alternative Use with a Custom Rates
+### Alternative Use with Custom Rates
 
 #### Override all the values
 
