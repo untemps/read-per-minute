@@ -26,21 +26,43 @@ Create an instance of `ReadPerMinute`:
 const rpm = new ReadPerMinute()
 ```
 
-Call the `parse` method with a string and a lang:
+Call the `parse` method with a string and a lang (see [Override the value for a one-time parsing](#override-the-value-for-a-one-time-parsing) for an alternative usage):
 
 ```javascript
 rpm.parse('Long text', 'en')
 ```
 
-Get the parsed values:
+The `parse` function returns an object with the following properties:
 
-```javascript
-const estimatedReadingTime = rpm.time
-const numberOfWords = rpm.words
-const langRate = rpm.rate
-```
+| Property | Description
+| -------- | ------------------------------------------------- |
+| time     | The estimated reading time in minutes             |
+| words    | The number of words in the text                   |
+| rate     | The rate value used to calculate the reading time |
 
-### Alternative Use with Custom Rates
+## Default Rates
+
+Default rate values come from ["How many words do we read per minute? A review and meta-analysis of reading rate"](https://osf.io/4nv9f/) by Marc Brysbaert - Department of Experimental Psychology Ghent University
+
+| Lang    | Rate |
+| ------- | ---- |
+| default | 200  |
+| ar      | 181  |
+| zh      | 260  |
+| nl      | 228  |
+| en      | 236  |
+| fi      | 195  |
+| fr      | 214  |
+| de      | 260  |
+| he      | 224  |
+| it      | 285  |
+| ko      | 226  |
+| es      | 278  |
+| sv      | 218  |
+
+If the lang is not listed or is undefined, the default value will be used instead.
+
+### Custom Rates
 
 #### Override all the values
 
@@ -70,25 +92,3 @@ rpm.parse('Long text', 425)
 ```
 
 **NOTE**: The custom reading rate must be greater than zero or the default value will be used.
-
-## Rates
-
-Reading rates by lang come from ["How many words do we read per minute? A review and meta-analysis of reading rate"](https://osf.io/4nv9f/) by Marc Brysbaert - Department of Experimental Psychology Ghent University
-
-| Lang    | Rate |
-| ------- | ---- |
-| default | 200  |
-| ar      | 181  |
-| zh      | 260  |
-| nl      | 228  |
-| en      | 236  |
-| fi      | 195  |
-| fr      | 214  |
-| de      | 260  |
-| he      | 224  |
-| it      | 285  |
-| ko      | 226  |
-| es      | 278  |
-| sv      | 218  |
-
-If the lang is not listed or is undefined, the default value will be used.
