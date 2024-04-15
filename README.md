@@ -62,9 +62,9 @@ Default rate values come from ["How many words do we read per minute? A review a
 
 If the lang is not listed or is undefined, the default value will be used instead.
 
-### Custom Rates
+## Custom Rates
 
-#### Override all the values
+### Override all the values
 
 You can specify an entire custom rates object in the constructor of an instance:
 
@@ -82,7 +82,7 @@ const rpm = new ReadPerMinute(customRates)
 **NOTE**: Set a `default` property in the object if you want the parsing to fallback to a specific value.  
 Otherwise, the static value will be used (`ReadPerMinute.rates.default`).
 
-#### Override the value for a one-time parsing
+### Override the value for a one-time parsing
 
 Simply pass the desired custom reading rate in words per minute instead of a language code:
 
