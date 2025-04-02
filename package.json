@@ -25,6 +25,7 @@
 	],
 	"exports": {
 		".": {
+			"default": "./dist/index.js",
 			"svelte": "./dist/index.js"
 		}
 	},
