@@ -1,3 +1,10 @@
+# [3.1.0-beta.1](https://github.com/untemps/read-per-minute/compare/v3.0.1-beta.2...v3.1.0-beta.1) (2025-08-30)
+
+
+### Features
+
+* Replace class with pure functions ([dc11fd9](https://github.com/untemps/read-per-minute/commit/dc11fd97850b2d4dc817d8ec33496cdf9c5c7144))
+
 ## [3.0.1-beta.2](https://github.com/untemps/read-per-minute/compare/v3.0.1-beta.1...v3.0.1-beta.2) (2025-08-30)
 
 ## [3.0.1-beta.1](https://github.com/untemps/read-per-minute/compare/v3.0.0...v3.0.1-beta.1) (2025-08-30)
