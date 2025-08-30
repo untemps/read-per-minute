@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/untemps/read-per-minute/compare/v3.0.0...v4.0.0) (2025-08-30)
+
+
+### Features
+
+* Replace class with pure functions ([#16](https://github.com/untemps/read-per-minute/issues/16)) ([bc0efa9](https://github.com/untemps/read-per-minute/commit/bc0efa9b32eb4c7c523da071e41dcd471b6f6bb9))
+
+
+### BREAKING CHANGES
+
+* No need to instantiate the class anymore, functions can be used directly and only ESM imports are now supported
+
 # [3.1.0-beta.1](https://github.com/untemps/read-per-minute/compare/v3.0.1-beta.2...v3.1.0-beta.1) (2025-08-30)
 
 
