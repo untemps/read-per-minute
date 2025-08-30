@@ -1,3 +1,5 @@
+## [3.0.1-beta.1](https://github.com/untemps/read-per-minute/compare/v3.0.0...v3.0.1-beta.1) (2025-08-30)
+
 # [3.0.0](https://github.com/untemps/read-per-minute/compare/v2.1.0...v3.0.0) (2024-04-10)
 
 
