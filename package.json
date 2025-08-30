@@ -24,8 +24,13 @@
 		"!dist/**/*.test.*"
 	],
 	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"exports": {
-		".": "./dist/index.js",
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"default": "./dist/index.js"
+		},
 		"./package.json": "./package.json"
 	},
 	"engines": {
@@ -82,7 +87,8 @@
 		]
 	},
 	"scripts": {
-		"build": "vite build",
+		"build": "vite build && yarn build:types",
+		"build:types": "cp src/*.d.ts dist/",
 		"test": "vitest watch --coverage",
 		"test:ci": "vitest run --coverage",
 		"lint": "prettier --check .",
