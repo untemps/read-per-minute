@@ -14,22 +14,16 @@ yarn add @untemps/read-per-minute
 
 ## Usage
 
-Import `ReadPerMinute`:
+Import the functions:
 
 ```javascript
-import { ReadPerMinute } from '@untemps/read-per-minute'
+import { parse, isLangExist, rates } from '@untemps/read-per-minute'
 ```
 
-Create an instance of `ReadPerMinute`:
+Call `parse` with a string and a lang (see [Override the value for a one-time parsing](#override-the-value-for-a-one-time-parsing) for an alternative usage):
 
 ```javascript
-const rpm = new ReadPerMinute()
-```
-
-Call the `parse` method with a string and a lang (see [Override the value for a one-time parsing](#override-the-value-for-a-one-time-parsing) for an alternative usage):
-
-```javascript
-rpm.parse('Long text', 'en')
+parse('Long text', 'en')
 ```
 
 The `parse` function returns an object with the following properties:
@@ -66,7 +60,7 @@ If the lang is not listed or is undefined, the default value will be used instea
 
 ### Override all the values
 
-You can specify an entire custom rates object in the constructor of an instance:
+You can specify an entire custom rates object as the third parameter of `parse` or `isLangExist`:
 
 ```javascript
 const customRates = {
@@ -76,11 +70,12 @@ const customRates = {
 	nl: 234,
 	en: 244,
 }
-const rpm = new ReadPerMinute(customRates)
+parse('Long text', 'en', customRates)
+isLangExist('en', customRates)
 ```
 
-**NOTE**: Set a `default` property in the object if you want the parsing to fallback to a specific value.  
-Otherwise, the static value will be used (`ReadPerMinute.rates.default`).
+**NOTE**: Set a `default` property in the object if you want the parsing to fallback to a specific value.
+Otherwise, the static value will be used (`rates.default`).
 
 ### Override the value for a one-time parsing
 
@@ -88,7 +83,7 @@ Simply pass the desired custom reading rate in words per minute instead of a lan
 
 ```javascript
 // For very fast readers: 425 words per minute.
-rpm.parse('Long text', 425)
+parse('Long text', 425)
 ```
 
 **NOTE**: The custom reading rate must be greater than zero or the default value will be used.
