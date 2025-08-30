@@ -23,11 +23,10 @@
 		"dist",
 		"!dist/**/*.test.*"
 	],
+	"module": "./dist/index.js",
 	"exports": {
-		".": {
-			"default": "./dist/index.js",
-			"svelte": "./dist/index.js"
-		}
+		".": "./dist/index.js",
+		"./package.json": "./package.json"
 	},
 	"engines": {
 		"node": ">=20"
