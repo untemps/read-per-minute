@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-import ReadPerMinute from '../ReadPerMinute'
+import { parse, isLangExist, rates } from '../index'
 
 const WORDS = [
 	'year',
@@ -73,13 +73,7 @@ const generateTokenizedText = (separator = '%', maxWordCount = 50, minWordCount 
 	return { str, int, tok }
 }
 
-describe('ReadPerMinute', () => {
-	describe('constructor', () => {
-		test('Instantiates class with no error', () => {
-			expect(() => new ReadPerMinute()).not.toThrow()
-		})
-	})
-
+describe('ReadPerMinute (functions)', () => {
 	describe('custom rates', () => {
 		const customRates = {
 			default: 2000,
@@ -96,36 +90,27 @@ describe('ReadPerMinute', () => {
 			es: 2780,
 			sv: 2180,
 		}
-
-		test('Instantiates class with no error', () => {
-			expect(() => new ReadPerMinute(customRates)).not.toThrow()
-		})
-
 		test.each([
-			[{}, ReadPerMinute.rates.default],
-			[[], ReadPerMinute.rates.default],
-			['', ReadPerMinute.rates.default],
-			[null, ReadPerMinute.rates.default],
+			[{}, rates.default],
+			[[], rates.default],
+			['', rates.default],
+			[null, rates.default],
 			[{ default: 300 }, 300],
 		])('Parses text using default values', (customRates, expected) => {
-			const instance = new ReadPerMinute(customRates)
-			expect(instance.parse()).toEqual({ time: 0, words: 0, rate: expected })
+			expect(parse(undefined, undefined, customRates)).toEqual({ time: 0, words: 0, rate: expected })
 		})
 
 		test.each([
 			[customRates, null, customRates.default],
 			[customRates, 'en', customRates.en],
 		])('Parses text using custom values', (customRates, lang, expected) => {
-			const instance = new ReadPerMinute(customRates)
-			expect(instance.parse('', lang)).toEqual({ time: 0, words: 0, rate: expected })
+			expect(parse('', lang, customRates)).toEqual({ time: 0, words: 0, rate: expected })
 		})
 	})
 
 	describe('isLangExist', () => {
-		const instance = new ReadPerMinute()
-
 		test('Returns false as lang is not specified', () => {
-			expect(instance.isLangExist()).toBeFalsy()
+			expect(isLangExist()).toBeFalsy()
 		})
 
 		test.each([
@@ -135,74 +120,72 @@ describe('ReadPerMinute', () => {
 			[() => null, false],
 			[[], false],
 			[{}, false],
-			[Object.keys(ReadPerMinute.rates)[1], true],
+			[Object.keys(rates)[1], true],
 			['de', true],
 		])('Returns lang existence', (value, expected) => {
-			expect(instance.isLangExist(value)).toBe(expected)
+			expect(isLangExist(value)).toBe(expected)
 		})
 	})
 
 	describe('parse', () => {
-		const instance = new ReadPerMinute()
-
 		test('Parses text using default values', () => {
-			expect(instance.parse()).toEqual({ time: 0, words: 0, rate: ReadPerMinute.rates.default })
+			expect(parse()).toEqual({ time: 0, words: 0, rate: rates.default })
 			expect(
-				instance.parse(
-					generateTokenizedText(null, ReadPerMinute.rates.default, ReadPerMinute.rates.default).str
+				parse(
+					generateTokenizedText(null, rates.default, rates.default).str
 				)
-			).toEqual({ time: 1, words: ReadPerMinute.rates.default, rate: ReadPerMinute.rates.default })
+			).toEqual({ time: 1, words: rates.default, rate: rates.default })
 		})
 
 		test.each([
 			[
 				generateTokenizedText(null, 255, 255).str,
 				'en',
-				{ time: Math.ceil(255 / ReadPerMinute.rates.en), words: 255, rate: ReadPerMinute.rates.en },
+				{ time: Math.ceil(255 / rates.en), words: 255, rate: rates.en },
 			],
 			[
-				generateTokenizedText(null, ReadPerMinute.rates.fr, ReadPerMinute.rates.fr).str,
+				generateTokenizedText(null, rates.fr, rates.fr).str,
 				'fr',
-				{ time: 1, words: ReadPerMinute.rates.fr, rate: ReadPerMinute.rates.fr },
+				{ time: 1, words: rates.fr, rate: rates.fr },
 			],
-			[null, 'en', { time: 0, words: 0, rate: ReadPerMinute.rates.en }],
+			[null, 'en', { time: 0, words: 0, rate: rates.en }],
 			[
-				generateTokenizedText(null, ReadPerMinute.rates.default, ReadPerMinute.rates.default).str,
+				generateTokenizedText(null, rates.default, rates.default).str,
 				null,
-				{ time: 1, words: ReadPerMinute.rates.default, rate: ReadPerMinute.rates.default },
+				{ time: 1, words: rates.default, rate: rates.default },
 			],
 			[
-				generateTokenizedText(null, ReadPerMinute.rates.default, ReadPerMinute.rates.default).str,
+				generateTokenizedText(null, rates.default, rates.default).str,
 				'foo',
-				{ time: 1, words: ReadPerMinute.rates.default, rate: ReadPerMinute.rates.default },
+				{ time: 1, words: rates.default, rate: rates.default },
 			],
-			[null, null, { time: 0, words: 0, rate: ReadPerMinute.rates.default }],
+			[null, null, { time: 0, words: 0, rate: rates.default }],
 		])('Parses text using specified values', (text, lang, expected) => {
-			expect(instance.parse(text, lang)).toEqual(expected)
+			expect(parse(text, lang)).toEqual(expected)
 		})
 
 		test.each([
 			[
-				generateTokenizedText(null, ReadPerMinute.rates.en, ReadPerMinute.rates.en).str,
+				generateTokenizedText(null, rates.en, rates.en).str,
 				'fr',
-				{ time: 1, words: ReadPerMinute.rates.en, rate: ReadPerMinute.rates.en },
+				{ time: 1, words: rates.en, rate: rates.en },
 			],
 		])('Parses text regarding lang rate', (text, lang, expected) => {
-			expect(instance.parse(text, lang)).not.toEqual(expected)
+			expect(parse(text, lang)).not.toEqual(expected)
 		})
 
 		test.each([[generateTokenizedText(null, 425, 425).str, 425, { time: 1, words: 425, rate: 425 }]])(
 			'Parses text and uses a custom rate',
 			(text, rate, expected) => {
-				expect(instance.parse(text, rate)).toEqual(expected)
+				expect(parse(text, rate)).toEqual(expected)
 			}
 		)
 		test.each([
 			[generateTokenizedText(null, 1, 1).str, 0],
 			[generateTokenizedText(null, 1, 1).str, -1],
 		])('Exchanges invalid numeric values with the default rate', (text, customRate) => {
-			const result = instance.parse(text, customRate)
-			expect(result.rate).to.equal(ReadPerMinute.rates.default)
+			const result = parse(text, customRate)
+			expect(result.rate).to.equal(rates.default)
 		})
 	})
 })

@@ -1,2 +1,1 @@
-export { default as ReadPerMinute } from './ReadPerMinute';
-
+export { parse, isLangExist, rates, type Rates } from './ReadPerMinute';
