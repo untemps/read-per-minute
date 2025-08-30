@@ -6,7 +6,7 @@
 	"homepage": "https://github.com/untemps/read-per-minute",
 	"repository": "git@github.com:untemps/read-per-minute.git",
 	"bugs": "https://github.com/untemps/read-per-minute/issues",
-	"description": "Class to parse a string and return an estimated reading time based on a lang rate",
+	"description": "Functions to parse a string and return an estimated reading time based on a lang rate",
 	"keywords": [
 		"estimated reading time",
 		"reading time",
